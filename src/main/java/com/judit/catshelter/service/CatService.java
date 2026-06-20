@@ -22,16 +22,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CatService {
-    private static final int ADOPTION_FRIENDSHIP_THRESHOLD = 10;
+    private static final int ADOPTION_FRIENDSHIP_THRESHOLD = 70;
     private static final Duration FEED_COOLDOWN = Duration.ofSeconds(60);
     private static final Duration PET_COOLDOWN = Duration.ofSeconds(30);
     private static final Duration PLAY_COOLDOWN  = Duration.ofSeconds(90);
 
     private final CatRepository catRepository;
 
-    public List<CatResponse> getAllCats() {
-        return catRepository.findAll()
-                .stream()
+    public List<CatResponse> getCats(AdoptionStatus status) {
+        List<Cat> cats = status == null
+                ? catRepository.findAll()
+                : catRepository.findByAdoptionStatus(status);
+
+        return cats.stream()
                 .map(this::toResponse)
                 .toList();
     }

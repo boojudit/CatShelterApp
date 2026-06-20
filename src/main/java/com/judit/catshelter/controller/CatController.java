@@ -3,7 +3,7 @@ package com.judit.catshelter.controller;
 import com.judit.catshelter.dto.CatInteractionRequest;
 import com.judit.catshelter.dto.CatResponse;
 import com.judit.catshelter.dto.CreateCatRequest;
-import com.judit.catshelter.model.Cat;
+import com.judit.catshelter.model.AdoptionStatus;
 import com.judit.catshelter.service.CatService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -18,8 +18,10 @@ public class CatController {
     private final CatService catService;
 
     @GetMapping
-    public List<CatResponse> getAllCats() {
-        return catService.getAllCats();
+    public List<CatResponse> getCats(
+            @RequestParam(required = false)AdoptionStatus status
+            ) {
+        return catService.getCats(status);
     }
 
     @PostMapping
