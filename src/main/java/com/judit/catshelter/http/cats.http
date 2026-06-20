@@ -1,0 +1,23 @@
+POST http://localhost:8080/api/cats
+Content-Type: application/json
+
+{
+  "name": "Boss"
+}
+
+###
+
+GET http://localhost:8080/api/cats
+
+###
+
+POST http://localhost:8080/api/cats/1/interactions
+Content-Type: application/json
+
+{
+  "type": "PLAY"
+}
+
+###
+
+POST http://localhost:8080/api/cats/1/adopt
