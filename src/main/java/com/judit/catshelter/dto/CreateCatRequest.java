@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 
 public record CreateCatRequest(
         @NotBlank(message = "Cat name is required")
-        @Size(max=50, message = "Name must be under 50 characters")
+        @Size(max=30, message = "Name must be under 30 characters")
         String name
 ) {
 }
