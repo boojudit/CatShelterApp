@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cats")
+@CrossOrigin(origins = "http://localhost:5173")
 @AllArgsConstructor
 public class CatController {
     private final CatService catService;

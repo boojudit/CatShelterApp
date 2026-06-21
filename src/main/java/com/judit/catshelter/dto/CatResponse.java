@@ -9,6 +9,8 @@ public record CatResponse (
         int friendship,
         CatMood mood,
         AdoptionStatus adoptionStatus,
-        boolean canBeAdopted
-){
-}
+        boolean canBeAdopted,
+        long feedCooldownSeconds,
+        long petCooldownSeconds,
+        long playCooldownSeconds
+){}

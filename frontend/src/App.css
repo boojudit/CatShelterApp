@@ -1,0 +1,84 @@
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.shelter-section {
+  flex: 3;
+}
+
+.honor-wall ul {
+  list-style: none;
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 0;
+  min-width: 220px;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cat-card {
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #242424;
+}
+
+.cat-card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.cat-form {
+  margin-bottom: 1rem;
+}
+
+.adopt-button {
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.adopt-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.interaction-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.interaction-buttons button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.interaction-buttons button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

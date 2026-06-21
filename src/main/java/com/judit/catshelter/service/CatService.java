@@ -22,10 +22,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CatService {
-    private static final int ADOPTION_FRIENDSHIP_THRESHOLD = 70;
-    private static final Duration FEED_COOLDOWN = Duration.ofSeconds(60);
-    private static final Duration PET_COOLDOWN = Duration.ofSeconds(30);
-    private static final Duration PLAY_COOLDOWN  = Duration.ofSeconds(90);
+    private static final int ADOPTION_FRIENDSHIP_THRESHOLD = 40;
+    private static final Duration FEED_COOLDOWN = Duration.ofSeconds(10);
+    private static final Duration PET_COOLDOWN = Duration.ofSeconds(20);
+    private static final Duration PLAY_COOLDOWN  = Duration.ofSeconds(15);
 
     private final CatRepository catRepository;
 
@@ -65,7 +65,7 @@ public class CatService {
                 cat.setLastFedAt(Instant.now());
             }
             case PET -> {
-                cat.setFriendship(Math.min(100, cat.getFriendship() + 5));
+                cat.setFriendship(Math.min(100, cat.getFriendship() + 10));
                 cat.setMood(CatMood.HAPPY);
                 cat.setLastPettedAt(Instant.now());
             }
@@ -104,7 +104,10 @@ public class CatService {
                 cat.getFriendship(),
                 cat.getMood(),
                 cat.getAdoptionStatus(),
-                canBeAdopted(cat)
+                canBeAdopted(cat),
+                remainingCooldownSeconds(cat.getLastFedAt(), FEED_COOLDOWN),
+                remainingCooldownSeconds(cat.getLastPettedAt(), PET_COOLDOWN),
+                remainingCooldownSeconds(cat.getLastPlayedAt(), PLAY_COOLDOWN)
         );
     }
 
@@ -140,6 +143,16 @@ public class CatService {
         }
         Duration timePassed = Duration.between(lastInteraction, Instant.now());
         return timePassed.compareTo(cooldown) < 0;
+    }
+
+    private long remainingCooldownSeconds(Instant lastInteraction, Duration cooldown){
+        if(lastInteraction == null){
+            return 0;
+        }
+        Duration timePassed = Duration.between(lastInteraction, Instant.now());
+        Duration remaining = cooldown.minus(timePassed);
+
+        return Math.max(0, remaining.toSeconds());
     }
 
 }
