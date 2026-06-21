@@ -82,3 +82,9 @@
   opacity: 0.35;
   cursor: not-allowed;
 }
+
+.cat-card h3 {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

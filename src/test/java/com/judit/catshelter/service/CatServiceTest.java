@@ -118,7 +118,7 @@ public class CatServiceTest {
     void shouldThrowWhenCatNotReadyForAdoption() {
         Cat cat = Cat.builder()
                 .id(1L)
-                .friendship(50)
+                .friendship(5)
                 .adoptionStatus(AdoptionStatus.IN_SHELTER)
                 .build();
 
